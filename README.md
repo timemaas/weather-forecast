@@ -10,6 +10,7 @@ You may also see any lint errors in the console.
 
 ### login
   Need to login on your git account to acess the Home page and weather page
+  Will redirect to home if not
   
 ### Unknown city
   Will not redirect to the weather page
