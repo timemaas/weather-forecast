@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from './common/Header'
+import LandingPage from './components/LandingPage'
+import HomePage from './components/HomePage'
+import WeatherPage from './components/WeatherPage'
 
-function App() {
+const App = () => {
+  const [weatherData, setWeatherData] = useState({});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Header setWeatherData={setWeatherData}/>}>
+          <Route index element={<LandingPage />} />
+          <Route path="/home" element={<HomePage setWeatherData={setWeatherData}/>} />
+          <Route path="/weather" element={<WeatherPage weatherData={weatherData}/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
