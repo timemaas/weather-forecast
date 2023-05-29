@@ -1,14 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import logo from '../img/landing-logo.png'
 
-const LandingPage = () => {
+const LandingPage = ({userData}) => {
   const {
-    user,
     isAuthenticated,
     loginWithRedirect
   } = useAuth0();
   
-  const firstName = user?.name ? user.name.split(' ')[0] : '';
+  const firstName = userData?.name ? userData.name : '';
   
   return <div className='landingpage-container'>
       <div className='landingpage-welcome-btn-cont'>

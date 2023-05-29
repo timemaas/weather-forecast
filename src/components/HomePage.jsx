@@ -1,19 +1,15 @@
 import {useState} from 'react';
 import { useNavigate, Link} from 'react-router-dom';
 import axios from 'axios'
-import { useAuth0 } from '@auth0/auth0-react';
 
-const HomePage = ({setWeatherData}) => {
+const HomePage = ({setWeatherData, userData}) => {
   const navigate = useNavigate();
   const [input, setInput] = useState();
   const [isError, setIsError] = useState(false);
-  const {
-    user
-  } = useAuth0();
-  const githubLink = `https://github.com/${user?.nickname}`;
+  const firstName = userData?.name ? userData.name : '';
+  const githubLink = userData?.html_url;
 
   const handleDisplayWeather = () => {
-    console.log(input)
     input && axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=a463cf4ce24722d4dc35094495cb226b`)
       .then(response=>{
         const data = response.data
@@ -29,8 +25,8 @@ const HomePage = ({setWeatherData}) => {
   }
 
   return <div className='homepage-container'>
-    {user && <><span className='homepage-greet'>Good Day{user.name ? <span className='homepage-name'> {user.name}</span> : ''}!</span>
-      <Link className='homepage-github' target="_blank" rel="noopener noreferrer" to={githubLink}>{githubLink}</Link></>}
+    <span className='homepage-greet'>Good Day{firstName? <span className='homepage-name'> {firstName}</span> : ''}!</span>
+    {githubLink && <Link className='homepage-github' target="_blank" rel="noopener noreferrer" to={githubLink}>{githubLink}</Link>}
     <input className='homepage-input' type="text" onChange={handleInputChange}></input>
     <div className='homepage-error-cont'>
       {isError && <div className="homepage-error">CITY NOT FOUND!</div>}
