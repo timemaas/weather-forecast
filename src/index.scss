@@ -71,6 +71,10 @@ code {
             margin-bottom: -3px;
             width: fit-content;
           }
+          .no-auth {
+            color: #afafaf;
+            cursor: default;
+          }
         }      
         a {
           text-decoration: none;

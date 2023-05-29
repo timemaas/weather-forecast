@@ -38,8 +38,11 @@ const Header = () => {
                     <div className='link-container'>
                         {headerLinks.map((val, i)=>{
                             const activeTab = location.pathname === val.path ? 'active-link' : '';
+                            const notAuthClass = !isAuthenticated && i > 0 ? 'no-auth' : '';
                             return <div className={activeTab}>
-                                <Link key={`${val}-${i}`} to={val.path} className={`header-link ${activeTab}`}>{val.name}</Link>
+                                { !notAuthClass ? <Link key={`${val}-${i}`} to={val.path} className={`header-link ${activeTab}`}>{val.name}</Link>
+                                    : <span className={`header-link ${notAuthClass}`}>{val.name}</span>
+                                }
                             </div>
                         })}
                     </div>
