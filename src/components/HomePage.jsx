@@ -6,7 +6,7 @@ const HomePage = ({setWeatherData, userData}) => {
   const navigate = useNavigate();
   const [input, setInput] = useState();
   const [isError, setIsError] = useState(false);
-  const firstName = userData?.name ? userData.name : '';
+  const firstName = userData?.name;
   const githubLink = userData?.html_url;
 
   const handleDisplayWeather = () => {
@@ -25,7 +25,7 @@ const HomePage = ({setWeatherData, userData}) => {
   }
 
   return <div className='homepage-container'>
-    <span className='homepage-greet'>Good Day{firstName? <span className='homepage-name'> {firstName}</span> : ''}!</span>
+    <span className='homepage-greet'>Good Day{firstName ? <span className='homepage-name'> {firstName}</span> : ''}!</span>
     {githubLink && <Link className='homepage-github' target="_blank" rel="noopener noreferrer" to={githubLink}>{githubLink}</Link>}
     <input className='homepage-input' type="text" onChange={handleInputChange}></input>
     <div className='homepage-error-cont'>

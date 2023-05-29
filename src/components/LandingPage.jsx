@@ -7,13 +7,11 @@ const LandingPage = ({userData}) => {
     loginWithRedirect
   } = useAuth0();
   
-  const firstName = userData?.name ? userData.name : '';
-  
   return <div className='landingpage-container'>
       <div className='landingpage-welcome-btn-cont'>
         <div className='landingpage-welcome-txt-cont' >
           <div className='landingpage-welcome-txt-header'>
-            Welcome <span className='landingpage-welcome-txt-name'>{firstName ? ` ${firstName}, ` : ''}</span>to the weather forecast web application.  
+            Welcome <span className='landingpage-welcome-txt-name'>{userData?.name ? ` ${userData.name}, ` : ''}</span>to the weather forecast web application.  
           </div>
           {!isAuthenticated && <div className='landingpage-welcome-txt-body'>
             Please login with your Github user to use the application and view the weather in your city
